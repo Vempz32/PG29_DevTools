@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "TYLERSPC",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus21.actions.githubusercontent.com/uCzfR9Ch52LRIbb1wJRXqs2r9ctT1Y1WAtoqIox0lN5TcamnWj/",
+  "gitHubUrl": "https://github.com/Vempz32/PG29_DevTools",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}
