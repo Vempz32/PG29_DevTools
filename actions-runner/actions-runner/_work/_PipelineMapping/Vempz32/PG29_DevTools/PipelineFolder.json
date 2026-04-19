@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "Vempz32/PG29_DevTools",
+  "pipelineDirectory": "PG29_DevTools",
+  "workspaceDirectory": "PG29_DevTools\\PG29_DevTools",
+  "repositories": {
+    "Vempz32/PG29_DevTools": {
+      "repositoryPath": "PG29_DevTools\\PG29_DevTools",
+      "lastRunOn": "04/18/2026 19:55:50 -07:00"
+    }
+  },
+  "lastRunOn": "04/18/2026 19:55:50 -07:00"
+}
