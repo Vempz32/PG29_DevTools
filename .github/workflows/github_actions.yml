@@ -23,9 +23,9 @@ jobs:
 
           - name: Upload to Google Drive
             env:
-                 OUTPUT_PATH: 'C:\Users\Tyler\Downloads\PG29CC\PG29CC\Builds'
+                 OUTPUT_PATH: 'C:\Users\Tyler\Documents\Builds'
             run: |
-             & "C:\Users\Tyler\AppData\Local\Microsoft\WinGet\Links\rclone.exe" copy "env:OUTPUT_PATH" gdrive:UnrealBuilds/PG29CC --progress
+             & "C:\Users\Tyler\AppData\Local\Microsoft\WinGet\Links\rclone.exe" copy "$env:OUTPUT_PATH" gdrive:UnrealBuilds/PG29CC --progress
 
                 
 
