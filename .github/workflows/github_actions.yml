@@ -4,6 +4,12 @@ on:
     push:
         branches:
             - main
+    workflow_dispatch:
+
+concurrency:
+      group: ${{github.workflow}}-${{github.ref}}
+      cancel-in-progress: true
+
 
 jobs:
     build:
@@ -11,21 +17,34 @@ jobs:
         name: Packing My Unreal Project
         steps: 
           - name: Checkout code
-            uses: actions/checkout@v3
+            uses: actions/checkout@v4
 
           - name: Package Project
             env: 
-                UE_PATH: 'C:\Program Files\Epic Games\UE_5.6'
-                PROJECT_PATH: 'C:\Users\Tyler\Downloads\PG29CC\PG29CC\PG29CC.uproject'
-                OUTPUT_PATH: 'C:\Users\Tyler\Documents\Builds'
+                UE_PATH: ${{secrets.UE_PATH}}
+                PROJECT_PATH:  ${{secrets.PROJECT_PATH}}
+                OUTPUT_PATH: ${{secrets.OUTPUT_PATH}}
             run: |
              & $env:UE_PATH\Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="$env:PROJECT_PATH" -noP4 -platform=Win64 -clientconfig=Development -serverconfig=Development -cook -allmaps -build -stage -pak -archive -archivedirectory="$env:OUTPUT_PATH"
 
-          - name: Upload to Google Drive
-            env:
-                 OUTPUT_PATH: 'C:\Users\Tyler\Documents\Builds'
-            run: |
-             & "C:\Users\Tyler\AppData\Local\Microsoft\WinGet\Links\rclone.exe" copy "$env:OUTPUT_PATH" gdrive:UnrealBuilds/PG29CC --progress
 
-                
+          - name: Upload Build Artifact
+            uses: actions/upload-artifact@v4
+            with: 
+              name: UnrealBuild-${{github.sha}}
+              path: ${{secrets.OUTPUT_PATH}}
+              retention-days: 7
+    upload:
+          name: Upload to Google Drive
+          needs: build
+          runs-on: self-hosted
+          steps:
+            - name: Upload to Google drive
+              env:
+                OUTPUT_PATH: ${{secrets.OUTPUT_PATH}}
+                RCLONE_PATH: ${{secrets.RCLONE_PATH}}
+              run: |
+                & "$env:RCLONE_PATH" copy "$env:OUTPUT_PATH" gdrive:UnrealBuilds/PG29CC --progress
+
+              
 
