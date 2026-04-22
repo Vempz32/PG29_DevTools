@@ -2,4 +2,19 @@ I created a testing level generator dev tool, i always want to create testing le
 
 
 
-TESTING 
+A2 DEV TOOL:
+To use the tool on another computer the user must change the GitHub secrets the need to change the OUTPUT_PATH to the path in their files where they would like to have the builds go then they need to adjust the PROJECT_PATH and set it to the path of the project they wish to build is then the RCLONE_PATH which will allow them to send the builds to google drive as well, they will be able to access the path in a later step, then finnaly the UE_PATH which they just need to set it to the path of their unreal engine app
+
+
+before setting up RCLONE the user will want to properly setup their google drive to allow it to be accessed to do this they will want to see this documentation or follow the provided steps https://rclone.org/drive/#making-your-own-client-id where they will then want to open the google API Console https://console.cloud.google.com/apis/dashboard, the create a new project or select one if you've already made one, then enter the ENABLE APIS AND SERVICES tab and search for "Drive" and enable the "Google Drive API" then click on "Credentials on the left side, then click on "CONFIGUE CONSENT SCREEN" at the top right corner of the right panel then click "Get started: and enter an application name whatever you want to name it, then enter your email and then select External, and enter your own contact info and agree to the terms then click on create once you've created it should so your project name in the top left of the screen
+then you will want to click on "Data Access" on the left side panel and click on "add or remove scopes and input the follow scope links: https://www.googleapis.com/auth/docs , https://www.googleapis.com/auth/drive and, https://www.googleapis.com/auth/drive.metadata.readonly once you've add them just press update or "manually add scopes" text box and enter each of those and press enter
+you should see all the scopes added just press save at the bottom after
+
+after adding the scopes click on "Audience" on the side back and then click on "+ Add users" and add yourself as a test user and press save, once you've done that go to the Overview on the left side panel and press "Create OAuth client" choose an application of type "Desktop app" and click create leaving the default name is good, it will then show your client ID and Client Secret you will be able to access them again but note them down aswell for later steps
+
+then go to audience and click "publish app" and confirm make sure you already added yourself as a test user add yourself as one if you didn't, then your already just give the client ID and client secret to rclone
+
+to set up sending the builds to google drive the user needs to install RCLONE from this link: https://rclone.org/ which will allow them to download RCLONE once they have installed RCLONE 
+they must go into windows powershell and add a new remote, once they do so they an just name it gdrive or however they wish but if its not gdrive they will need to update the code, once they set the name they must select Google drive it the large list of options the number is 24 but it might be good to double check, once they have done that it will ask for the client id gathered earlier then provide the Client secret aswell then just enter 1 from the list then just select all the default options and then just enter y once it asks you and link your google account in the tab it opens for you then once you have successfully logged in and linked your account you should be all ready to commit your project and have it build out to google drive and your output path as well you can track the progress through the actions page in the GitHub 
+
+:)
